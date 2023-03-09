@@ -1,0 +1,53 @@
+body {
+    text-align: center;
+}
+
+ #headline { /* The CRYPTONITE Headline */
+    background-image: url("/Project2/img/menubar.png");
+    background-repeat: no-repeat;
+    /* width: 20%; */
+    height: 300px;
+}
+
+.cryptonite {
+    font-family: 'Rubik Mono One', sans-serif;
+    font-size: 78px;
+    margin-left: 6%;
+}
+
+
+
+#menuBar { /* The menu bar */
+    margin-left: 6%;
+    margin-bottom: 20px;
+    /* margin-top: 20px; */
+    position: sticky; top: 0;
+} 
+
+#container {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.coinBox {
+    border: 2px solid black;
+    box-shadow: 2px 2px 8px 3px;
+    border-radius: 15px;
+    width: 130px;
+    height: 130px;
+    padding: 20px;
+    margin-left: 25px;
+    margin-top: 25px;
+    text-align:left;
+}
+
+.err-notice {
+    text-align: center;
+    padding: 30px;
+    font-family: 'Rubik Mono One', sans-serif;
+    font-size: 50px;
+}
+
+
+
