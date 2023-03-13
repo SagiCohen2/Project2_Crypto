@@ -15,7 +15,11 @@ body {
     margin-left: 6%;
 }
 
-
+/* #loadingAni {
+    background-image: url("/Project2/img/loading-ani.gif");
+    width: 30px;
+    height: 30px;
+} */
 
 #menuBar { /* The menu bar */
     margin-left: 6%;

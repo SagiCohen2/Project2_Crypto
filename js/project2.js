@@ -1,6 +1,9 @@
 
 const url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&sparkline=false";
 const total = 100;
+let dispCoins = [];
+let myFilterdChoise = {};
+
 
 $(document).ready(async () => {
   try {
@@ -16,12 +19,16 @@ $(document).ready(async () => {
             <p class="card-text">${coin.name}</p>
             <button data-bs-toggle="collapse" class="btn btn-primary" data-bs-target="#${uniqueId}">More Info</button>
             <div id="${uniqueId}" class="collapse">
-              <p>Loading...</p>
+              <p>Loading...<br/><img src="/Project2/img/loading-ani.gif" style="width: 140px;
+              height: 80px;"></p>
             </div>
           </div>
         </div>
       `);
       $("#container").append($card);
+
+      // Add coin data to dispCoins array
+      dispCoins.push(coin);
 
       $.get(coinDetailsUrl, (data) => {
         const $details = $(`
@@ -36,10 +43,40 @@ $(document).ready(async () => {
       });
     }
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     $("#container").html(`<div class="err-notice">
     Something went wrong, please try again in a few minutes..
     </div>
     `);
   }
+//   ONCLICK FUNCTION FOR SEARCH BUTTON
+$('#searchBtn').on('click', async () => {
+  filterCoins()
 });
+});
+
+function filterCoins() {
+  let myFilteredChoice = {};
+  let searchTerm = $('#searchVal').val().toLowerCase();
+  console.log(searchTerm);
+  let filteredCoins = dispCoins.filter((coin) =>
+    coin.id.toLowerCase().includes(searchTerm)
+  );
+  console.log(filteredCoins);
+
+  if (!searchTerm) {
+    $('.card').show();
+    return;
+  }
+
+  for (let counter = 0; counter < dispCoins.length; counter++) {
+    // FIND THE COIN SPECIFIC INDEX
+    let card = $(`.card:eq(${counter})`);
+    // SHOW ALL COINS THAT EQUAL THE SEARCH VALUE ONLY SYMBOL
+    if (dispCoins[counter].symbol.toLowerCase() !== searchTerm) {
+      card.hide();
+    } else {
+      card.show();
+    }
+  }
+}
