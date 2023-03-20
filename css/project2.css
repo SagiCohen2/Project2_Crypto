@@ -3,23 +3,23 @@ body {
 }
 
 #headline {
-    background-image: url("../img/new1920image.jpeg");
+    background-image: url("../img/onecoinbackground.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 350px;
-    background-size: 100% 350px;
+    height: 500px;
+    background-size: 100% 500px;
     position: relative;
   }
 .cryptonite {
     font-family: 'Rubik Mono One', sans-serif;
     font-size: 78px;
     margin-left: 6%;
+    color: rgb(214, 151, 57);
 }
 
 #menuBar { /* The menu bar */
     margin-left: 6%;
     margin-bottom: 20px;
-    /* margin-top: 20px; */
     position: sticky; top: 0;
 } 
 
@@ -27,6 +27,8 @@ body {
     align-items: flex-start;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 12px;
 }
 
 .coinBox {
@@ -41,10 +43,14 @@ body {
     text-align:left;
 }
 
+.coinBox:hover {
+    border: 2px solid rgb(192, 58, 58);
+}
+
 .err-notice {
     text-align: center;
     padding: 30px;
     font-family: 'Rubik Mono One', sans-serif;
-    font-size: 50px;
+    font-size: 45px;
 }
 

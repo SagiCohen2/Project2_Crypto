@@ -1,9 +1,9 @@
-
 const url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&sparkline=false";
 const total = 100;
 let dispCoins = [];
-let toggleChoices = []; // Array for the toggle button FUNCTION , the rest of the function is further down the page.
+let modalArray = [];
 let myFilterdChoise = {};
+const toggleChoices = {};
 
 //  ALL 100 COINS , Function that takes the Coins from the API and present them in the container..
 $(document).ready(async () => {
@@ -14,11 +14,11 @@ $(document).ready(async () => {
       const coinDetailsUrl = `https://api.coingecko.com/api/v3/coins/${coin.id}`;
       const uniqueId = `coin-${coin.id}-details`;
       const $card = $(`
-        <div class="card" style="width: 200px;">
+        <div class="card" style="width: 200px">
           <div class="card-body">
             <h4 class="card-title">${coin.symbol}</h4>
             <span class="form-check form-switch">
-            <input class="form-check-input checkbox-${coin.name}" type="checkbox" role="switch" id="${checkboxId}">
+            <input class="form-check-input checkbox-${coin.name}" type="checkbox" role="switch" id="toggleSwtich-${coin.id}">
             </span>
             <p class="card-text">${coin.name}</p>
             <button data-bs-toggle="collapse" class="btn btn-primary" data-bs-target="#${uniqueId}">More Info</button>
@@ -33,6 +33,12 @@ $(document).ready(async () => {
 
       // Add coin data to dispCoins array
       dispCoins.push(coin);
+      //   ONCLICK takes you to Home Page
+      $('#homepage').on('click', async () => {
+      // console.log("Just checking the Navbar Home button") // CHECK
+      // $("#container").empty();
+      $("#container").append($card);
+      });
 
       $.get(coinDetailsUrl, (data) => {
         const $details = $(`
@@ -122,6 +128,11 @@ async function filterCoins() {
   }
 };
 
+$('#container').on('click', 'input[type="checkbox"]', function (event) {
+    checkBoxCheck(event)
+  });
+  
+
 // FUNCTION when user scroll down NAVBAR stays on top
 $(document).ready(function(){
   // When the user scrolls the page, execute the function
@@ -139,9 +150,3 @@ $(document).ready(function(){
     }
   });
 });
-// FUNCTION for Toggle button switch
-// When the checkbox is clicked
-$('#container').on('click', 'input[type="checkbox"]', function (event) {
-  checkBoxCheck(event)
-});
-

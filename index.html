@@ -11,7 +11,8 @@
       crossorigin="anonymous"
     ></script>
     <!-- JQUERY -->
-    <script src="/Project2/js/project2.js"></script>
+    <script defer src="/Project2/js/project2x.js"></script>
+    <script defer src="/Project2/js/toggleFunc.js"></script>
     <!-- Java Script -->
     <link rel="stylesheet" href="/Project2/css/project2.css" />
     <!-- CSS -->
@@ -52,7 +53,7 @@
           <a
             class="nav-link"
             data-bs-toggle="modal"
-            data-bs-target="#myModal"
+            data-bs-target="#coinsModal"
             href="#menu1"
             >Live Reports</a
           >
@@ -82,5 +83,64 @@
       <hr />
     </div>
     <div id="container"></div>
+    <!-- MODAL -->
+    <div
+      class="modal fade"
+      id="coinsModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title fs-5" id="exampleModalLabel">
+              <u>Live Reports: Maximum 5 Coins.</u> <br />
+              Please remove a coin before adding another:
+            </h2>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer flex-column text-center">
+            <div class="order-1">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                id="closeModal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-warning"
+                id="changeCoin"
+                data-bs-toggle="collapse"
+                data-bs-target="#coinsCollapse"
+                aria-expanded="false"
+                aria-controls="coinsCollapse"
+              >
+                Change Coin
+              </button>
+              <br />
+              <!-- COLLAPSE FOR CHANGE COIN -->
+              <div class="collapse collapseCoin" id="coinsCollapse">
+                Which Coin To Replace:
+                <br />
+                <select
+                  class="form-select replaceCoin"
+                  aria-label="Default select example"
+                >
+                  <option selected disabled>
+                    Select Which Coin To Replace
+                  </option>
+                </select>
+                <input type="button" value="OK" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
