@@ -54,8 +54,8 @@ const checkBoxCheck = (event) => {
     // LOOP SELECTED COINS AND APPEND OPTIONS TO SELECT
     for (let i = 0; i < toggleChoices.length - 1; i++) {
       const option = $('<option>')
-        .val(toggleChoices[i].name)
-        .text(toggleChoices[i].name)
+        .val(dispCoins[i].name)
+        .text(dispCoins[i].name)
       $('.replaceCoin').append(option)
     }
   }
