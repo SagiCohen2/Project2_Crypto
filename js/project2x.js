@@ -3,7 +3,7 @@ const total = 100;
 let dispCoins = [];
 let modalArray = [];
 let myFilterdChoise = {};
-const toggleChoices = {};
+const toggleChoices = [];
 
 //  ALL 100 COINS , Function that takes the Coins from the API and present them in the container..
 $(document).ready(async () => {
@@ -18,7 +18,7 @@ $(document).ready(async () => {
           <div class="card-body">
             <h4 class="card-title">${coin.symbol}</h4>
             <span class="form-check form-switch">
-            <input class="form-check-input checkbox-${coin.name}" type="checkbox" role="switch" id="toggleSwtich-${coin.id}">
+            <input class="form-check-input my-toggle checkbox-${coin.id}" type="checkbox" id="toggle-${coin.id}" role="switch" name="${coin.name}">
             </span>
             <p class="card-text">${coin.name}</p>
             <button data-bs-toggle="collapse" class="btn btn-primary" data-bs-target="#${uniqueId}">More Info</button>
@@ -33,6 +33,7 @@ $(document).ready(async () => {
 
       // Add coin data to dispCoins array
       dispCoins.push(coin);
+      // toggleChoices.push(coin);
       //   ONCLICK takes you to Home Page
       $('#homepage').on('click', async () => {
       // console.log("Just checking the Navbar Home button") // CHECK
@@ -131,22 +132,25 @@ async function filterCoins() {
 $('#container').on('click', 'input[type="checkbox"]', function (event) {
     checkBoxCheck(event)
   });
+
   
 
 // FUNCTION when user scroll down NAVBAR stays on top
-$(document).ready(function(){
-  // When the user scrolls the page, execute the function
-  $(window).scroll(function() {
-    // Check the scroll position of the page
-    var scrollPosition = $(this).scrollTop();
-
-    // If the scroll position is greater than or equal to the top of the menuBar
-    if (scrollPosition >= $('#menuBar').offset().top) {
-      // Add a class to the menuBar to make it fixed to the top
-      $('#menuBar').addClass('fixed-top');
-    } else {
-      // Remove the class from the menuBar if the scroll position is less than the top of the menuBar
-      $('#menuBar').removeClass('fixed-top');
-    }
-  });
+$(window).on('scroll', function() {
+  myFunction();
 });
+
+// Get the navbar
+var navbar = $('#menuBar');
+
+// Get the offset position of the navbar
+var sticky = navbar.offset().top;
+
+// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myFunction() {
+  if ($(window).scrollTop() >= sticky) {
+    navbar.addClass('sticky');
+  } else {
+    navbar.removeClass('sticky');
+  }
+}

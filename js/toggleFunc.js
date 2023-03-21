@@ -1,16 +1,18 @@
+
 //FUNCTION checkBoxCheck ADDING AND REMOVING CHECKED COINS TO toggleChoices ARRAY
 const checkBoxCheck = (event) => {
-    let checkBoxId = event.target.id
+    let checkBoxId = event.target.id;
     let checkBoxIndex = checkBoxId.split('-')[1]
     if ($('#' + checkBoxId).is(':checked')) {
       if (toggleChoices.length < 6) {
-        toggleChoices.push(displayCoins[checkBoxIndex])
+        toggleChoices.push(dispCoins[checkBoxIndex])
       }
     } else {
-      let arrIndex = toggleChoices.indexOf(displayCoins[checkBoxIndex])
+      let arrIndex = toggleChoices.indexOf(dispCoins[checkBoxIndex])
       toggleChoices.splice(arrIndex, 1)
     }
     checkBoxCont()
+    console.log(checkBoxIndex);
     // // add coins to live Reports chart
     // getCoinsPriceChart()
   }
@@ -24,17 +26,17 @@ const checkBoxCheck = (event) => {
       <div class="col-6">
         <h5>Live Report Coins</h5>
         <ul>
-          <li>First Coin: ${toggleChoices[0].name}</li>
-          <li>Second Coin: ${toggleChoices[1].name}</li>
-          <li>Third Coin: ${toggleChoices[2].name}</li>
-          <li>Fourth Coin: ${toggleChoices[3].name}</li>
-          <li>Fifth Coin: ${toggleChoices[4].name}</li>
+          <li>First Coin: ${dispCoins[0].name}</li>
+          <li>Second Coin: ${dispCoins[1].name}</li>
+          <li>Third Coin: ${dispCoins[2].name}</li>
+          <li>Fourth Coin: ${dispCoins[3].name}</li>
+          <li>Fifth Coin: ${dispCoins[4].name}</li>
         </ul>
       </div>
       <div class="col-6">
         <h5>The Extra Coin</h5>
         <ul>
-        <li>Sixth Coin: ${toggleChoices[5].name}</li>
+        <li>Sixth Coin: ${dispCoins[5].name}</li>
         </ul>
       </div>
     </div>
