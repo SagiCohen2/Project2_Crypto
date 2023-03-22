@@ -3,7 +3,7 @@ const total = 100;
 let dispCoins = [];
 let modalArray = [];
 let myFilterdChoise = {};
-const toggleChoices = [];
+let toggleChoices = [];
 
 //  ALL 100 COINS , Function that takes the Coins from the API and present them in the container..
 $(document).ready(async () => {

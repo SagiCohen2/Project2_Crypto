@@ -1,20 +1,19 @@
 
-//FUNCTION checkBoxCheck ADDING AND REMOVING CHECKED COINS TO toggleChoices ARRAY
+//FUNCTION checkBoxCheck ADDING AND REMOVING CHECKED COINS TO modalArray ARRAY
 const checkBoxCheck = (event) => {
     let checkBoxId = event.target.id;
     let checkBoxIndex = checkBoxId.split('-')[1]
     if ($('#' + checkBoxId).is(':checked')) {
-      if (toggleChoices.length < 6) {
-        toggleChoices.push(dispCoins[checkBoxIndex])
+      if (modalArray.length < 6) {
+        modalArray.push(checkBoxIndex)
       }
     } else {
-      let arrIndex = toggleChoices.indexOf(dispCoins[checkBoxIndex])
-      toggleChoices.splice(arrIndex, 1)
+      let arrIndex = modalArray.indexOf(checkBoxIndex)
+      modalArray.splice(arrIndex, 1)
     }
+    // modalArray.push(checkBoxIndex)
     checkBoxCont()
-    console.log(checkBoxIndex);
-    // // add coins to live Reports chart
-    // getCoinsPriceChart()
+    // console.log(modalArray)
   }
   
   // FUNCTION checkBoxCont ADD ALL SELECTED COINS TO ARRAY AND INJECT TO MODAL(SHOW MODAL AFTER 6 COINS SELECTED)
@@ -26,17 +25,17 @@ const checkBoxCheck = (event) => {
       <div class="col-6">
         <h5>Live Report Coins</h5>
         <ul>
-          <li>First Coin: ${dispCoins[0].name}</li>
-          <li>Second Coin: ${dispCoins[1].name}</li>
-          <li>Third Coin: ${dispCoins[2].name}</li>
-          <li>Fourth Coin: ${dispCoins[3].name}</li>
-          <li>Fifth Coin: ${dispCoins[4].name}</li>
+          <li>First Coin: ${modalArray[0]}</li>
+          <li>Second Coin: ${modalArray[1]}</li>
+          <li>Third Coin: ${modalArray[2]}</li>
+          <li>Fourth Coin: ${modalArray[3]}</li>
+          <li>Fifth Coin: ${modalArray[4]}</li>
         </ul>
       </div>
       <div class="col-6">
         <h5>The Extra Coin</h5>
         <ul>
-        <li>Sixth Coin: ${dispCoins[5].name}</li>
+        <li>Sixth Coin: ${modalArray[5]}</li>
         </ul>
       </div>
     </div>
@@ -52,10 +51,10 @@ const checkBoxCheck = (event) => {
     //  MAKE FIRST OPTION SELECTED
     $('.replaceCoin').val($('.replaceCoin option:first').val())
     // LOOP SELECTED COINS AND APPEND OPTIONS TO SELECT
-    for (let i = 0; i < toggleChoices.length - 1; i++) {
+    for (let i = 0; i < modalArray.length - 1; i++) {
       const option = $('<option>')
-        .val(toggleChoices[i].name)
-        .text(toggleChoices[i].name)
+        .val(modalArray[i].name)
+        .text(modalArray[i].name)
       $('.replaceCoin').append(option)
     }
   }
@@ -70,9 +69,9 @@ const checkBoxCheck = (event) => {
     // Find checkbox with the specified class and uncheck
     $(checkBoxClass + ':checkbox').prop('checked', false)
     // REMOVE FROM ARRAY THE SELECTED COIN TO REMOVE
-    for (let coin of toggleChoices) {
+    for (let coin of modalArray) {
       if (coin.name === $('.replaceCoin').val()) {
-        toggleChoices.splice(toggleChoices.indexOf(coin), 1)
+        modalArray.splice(modalArray.indexOf(coin), 1)
         break
       }
     }
