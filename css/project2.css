@@ -33,7 +33,6 @@ body {
     height: 60px;
     border: 2px solid rgb(226, 141, 13);
     border-radius: 3px;
-    z-index: 9999;
     }
 
 #menuBar a {
